@@ -33,7 +33,7 @@ class SinhVienController {
     
             // Xử lý upload ảnh
             if (!empty($_FILES["Hinh"]["name"])) {
-                $targetDir = "public/images/";  // Thư mục lưu ảnh
+                $targetDir = "Content/images/";  // Thư mục lưu ảnh
                 if (!is_dir($targetDir)) {
                     mkdir($targetDir, 0777, true); // Tạo thư mục nếu chưa có
                 }
@@ -48,13 +48,13 @@ class SinhVienController {
                     if (move_uploaded_file($_FILES["Hinh"]["tmp_name"], $targetFilePath)) {
                         $sinhvien->Hinh = "/" . $targetFilePath; // Lưu đường dẫn ảnh vào database
                     } else {
-                        $sinhvien->Hinh = "/public/images/default.jpg"; // Ảnh mặc định nếu upload lỗi
+                        $sinhvien->Hinh = "/public/Content/images/default.jpg"; // Ảnh mặc định nếu upload lỗi
                     }
                 } else {
                     die("Chỉ chấp nhận các file ảnh JPG, PNG, JPEG, GIF.");
                 }
             } else {
-                $sinhvien->Hinh = "/public/images/default.jpg"; // Ảnh mặc định nếu không upload
+                $sinhvien->Hinh = "/public/Content/images/default.jpg"; // Ảnh mặc định nếu không upload
             }
     
             $sinhvien->create();
